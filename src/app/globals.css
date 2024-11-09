@@ -7,4 +7,17 @@
 body {
   color: white;
   background: #141414;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.movie-slider {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+  overflow-x: auto;
+  width: 100%;
+
+  padding: 20px 32px;
 }

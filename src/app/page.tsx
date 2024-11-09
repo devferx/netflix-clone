@@ -1,3 +1,4 @@
+import { MovieSliderItem } from '@/domains/home/components'
 import { getPopularMovies } from '@/services'
 
 export default async function HomePage() {
@@ -6,16 +7,14 @@ export default async function HomePage() {
   return (
     <div>
       <h1>Hello Page</h1>
-      <ul>
-        <li>
-          {movies.map((movie) => (
-            <div key={movie.id}>
-              <h2>{movie.title}</h2>
-              <p>{movie.overview}</p>
-            </div>
-          ))}
-        </li>
-      </ul>
+
+      <div className="movie-slider">
+        {movies.map((movie) => (
+          <MovieSliderItem key={movie.id} movie={movie} />
+        ))}
+      </div>
+
+      <h3>Hello</h3>
     </div>
   )
 }
