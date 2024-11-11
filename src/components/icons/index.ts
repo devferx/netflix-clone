@@ -1,4 +1,5 @@
 export * from './dislike'
+export * from './info'
 export * from './like'
 export * from './play'
 export * from './plus'

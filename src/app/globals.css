@@ -20,3 +20,7 @@ body {
 .swiper-button-next.swiper-button-disabled {
   opacity: 0 !important;
 }
+
+.hero-img {
+  mask-image: linear-gradient(black 30%, transparent);
+}

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Dislike, Like, Play, Plus } from '@/components/icons'
 import { MovieActionButton } from './movie-action-button'
 
-import { getGenreById } from '@/utils'
+import { getGenreById, getImageUrl } from '@/utils'
 
 import type { Movie } from '@/interfaces'
 
@@ -18,7 +18,7 @@ export const MovieSliderItem = ({ movie }: Props) => {
   return (
     <article className="relative duration-300 group hover:scale-[1.2] hover:z-20">
       <Image
-        src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+        src={getImageUrl(movie.backdrop_path)}
         width={400}
         height={225}
         alt={movie.title}
