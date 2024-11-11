@@ -8,3 +8,15 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important;
+  height: 100%;
+  transition: opacity 0.3s;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0 !important;
+}

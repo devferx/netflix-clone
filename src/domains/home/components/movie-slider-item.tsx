@@ -16,7 +16,7 @@ export const MovieSliderItem = ({ movie }: Props) => {
     .map((genreId) => getGenreById(genreId))
     .join(' • ')
   return (
-    <article className="relative min-w-[350px] duration-300 group hover:scale-[1.2] hover:z-20">
+    <article className="relative duration-300 group hover:scale-[1.2] hover:z-20">
       <Image
         src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
         width={400}
