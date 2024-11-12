@@ -25,8 +25,7 @@ export const TopRatedMovie = ({ movie, index }: Props) => {
         {index + 1}
       </span>
       <Image
-        className="relative w-[200px] z-20 select-none"
-        objectFit="cover"
+        className="relative w-[200px] z-20 select-none object-cover"
         width={200}
         height={300}
         src={getImageUrl(movie.poster_path, 'w300')}
