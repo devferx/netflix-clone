@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-outline-4 {
+    -webkit-text-stroke: 4px #808080;
+  }
+}
+
 body {
   color: white;
   background: #141414;

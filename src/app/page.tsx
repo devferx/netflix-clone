@@ -5,21 +5,16 @@ import {
 } from '@/services'
 
 import { Hero, MovieSlider } from '@/domains/home/components'
+import { TopRatedMovies } from '@/domains/home/components/top-rated-movies'
 
 export default async function HomePage() {
-  const [
-    popularMovies,
-    topRatedMovies,
-    popularFamilyMovies,
-    horrorMovies,
-    dramaMovies,
-  ] = await Promise.all([
-    getPopularMovies(),
-    getTopRatedMovies(),
-    getPopularMoviesByGenres('10751,35'),
-    getPopularMoviesByGenres('27,53'),
-    getPopularMoviesByGenres('18,10749'),
-  ])
+  const [popularMovies, topRatedMovies, popularFamilyMovies, horrorMovies] =
+    await Promise.all([
+      getPopularMovies(),
+      getTopRatedMovies(),
+      getPopularMoviesByGenres('10751,35'),
+      getPopularMoviesByGenres('27,53'),
+    ])
 
   return (
     <div>
@@ -27,9 +22,8 @@ export default async function HomePage() {
       <div className="-mt-[170px] grid gap-14">
         <MovieSlider title="Popular movies" movies={popularMovies} />
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />
-        <MovieSlider title="Top rated movies" movies={topRatedMovies} />
+        <TopRatedMovies movies={topRatedMovies} />
         <MovieSlider title="Popular horror movies" movies={horrorMovies} />
-        <MovieSlider title="Drama movies" movies={dramaMovies} />
       </div>
     </div>
   )
