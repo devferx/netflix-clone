@@ -14,18 +14,18 @@ export const TopRatedMovie = ({ movie, index }: Props) => {
   return (
     <div
       key={movie.id}
-      className={'relative min-w-fit flex gap-10 items-center pl-[90px]'}
+      className={'relative flex min-w-fit items-center gap-10 pl-[90px]'}
     >
       <span
         className={clsx(
-          'absolute -top-[20px] text-[220px] font-extrabold font-outline-4 text-transparent z-10 select-none tracking-[-0.13em]',
+          'font-outline-4 absolute -top-[20px] z-10 select-none text-[220px] font-extrabold tracking-[-0.13em] text-transparent',
           index >= 9 ? '-left-6 top-[20px] text-[180px]' : '-left-0',
         )}
       >
         {index + 1}
       </span>
       <Image
-        className="relative w-[200px] z-20 select-none object-cover"
+        className="relative z-20 w-[200px] select-none object-cover"
         width={200}
         height={300}
         src={getImageUrl(movie.poster_path, 'w300')}

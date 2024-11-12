@@ -12,7 +12,7 @@ export const Navbar = () => {
   const [background, setBackground] = useState('rgba(20, 20, 20, 0)')
 
   useEffect(() => {
-    const scrollEvent = window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
       const scroll = window.scrollY
       if (scroll > 100) {
         const opacity = Math.min(1, window.scrollY / 400)
@@ -27,13 +27,13 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="fixed top-0 right-0 left-0 py-5 px-14 z-50 flex items-center justify-between"
+      className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-14 py-5"
       style={{ background }}
     >
       <div className="flex items-center gap-4">
         <Image width={111} height={26} src={netflixLogo} alt="Netflix" />
 
-        <Link className="text-white font-bold" href="/">
+        <Link className="font-bold text-white" href="/">
           Start
         </Link>
         <Link className="text-white" href="/">

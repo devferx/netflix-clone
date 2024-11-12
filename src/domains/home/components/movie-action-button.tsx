@@ -6,7 +6,7 @@ type Props = React.HTMLAttributes<HTMLButtonElement> & {
 
 export const MovieActionButton = ({ children, ...props }: Props) => {
   return (
-    <button className="border border-white rounded-full p-[5px]" {...props}>
+    <button className="rounded-full border border-white p-[5px]" {...props}>
       {children}
     </button>
   )

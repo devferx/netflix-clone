@@ -16,7 +16,7 @@ export const TopRatedMovies = ({ movies }: Props) => {
     <section className="grid gap-4">
       <h3 className="px-16 text-xl font-bold">Top 10 movies</h3>
       <Swiper
-        className="w-full mx-16"
+        className="mx-16 w-full"
         slidesPerView={2}
         spaceBetween={16}
         slidesOffsetBefore={64}
