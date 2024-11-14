@@ -4,9 +4,8 @@ import {
   getTopRatedMovies,
 } from '@/services'
 
-import { Navbar } from '@/components/ui'
-import { Hero, MovieSlider } from '@/domains/home/components'
-import { TopRatedMovies } from '@/domains/home/components/top-rated-movies'
+import { Footer, Navbar } from '@/components/ui'
+import { Hero, MovieSlider, TopRatedMovies } from '@/domains/home/components'
 
 export default async function HomePage() {
   const [popularMovies, topRatedMovies, popularFamilyMovies, horrorMovies] =
@@ -27,6 +26,7 @@ export default async function HomePage() {
         <TopRatedMovies movies={topRatedMovies} />
         <MovieSlider title="Popular horror movies" movies={horrorMovies} />
       </div>
+      <Footer />
     </main>
   )
 }
