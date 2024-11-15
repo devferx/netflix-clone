@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from 'next/image'
 
 import { Info, Play } from '@/components/icons'
 
-import { getImageUrl } from '@/utils/get-image-url'
+import { getImageUrl } from '@/utils'
 
 import type { Movie } from '@/interfaces'
 
@@ -28,10 +28,11 @@ export const Hero = ({ movie }: Props) => {
         </div>
       </div>
 
-      <img
+      <Image
         className="hero-img h-full w-full object-cover"
         src={getImageUrl(movie.backdrop_path, 'original')}
         alt={movie.title}
+        fill
       />
     </header>
   )
