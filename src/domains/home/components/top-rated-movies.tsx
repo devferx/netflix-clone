@@ -1,11 +1,14 @@
 'use client'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { TopRatedMovie } from './top-rated-movie'
 
 import type { Movie } from '@/interfaces'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
 
 interface Props {
   movies: Movie[]
