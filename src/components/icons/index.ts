@@ -1,4 +1,5 @@
 export * from './bell'
+export * from './close'
 export * from './dislike'
 export * from './info'
 export * from './like'

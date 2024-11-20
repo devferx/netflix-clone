@@ -30,3 +30,17 @@ body {
 .hero-img {
   mask-image: linear-gradient(black 30%, transparent);
 }
+
+.modal-backdrop-img {
+  mask-image: linear-gradient(black 70%, transparent);
+}
+
+.modal-backdrop-gradients {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom left,
+    rgba(0, 0, 0, 0.5),
+    transparent 30%
+  );
+}

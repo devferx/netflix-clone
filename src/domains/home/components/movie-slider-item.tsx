@@ -1,4 +1,8 @@
+'use client'
+
 import Image from 'next/image'
+
+import { useMovieModalStore } from '@/store'
 
 import { Dislike, Like, Play, Plus } from '@/components/icons'
 import { MovieActionButton } from './movie-action-button'
@@ -12,9 +16,12 @@ interface Props {
 }
 
 export const MovieSliderItem = ({ movie }: Props) => {
+  const openMovieModal = useMovieModalStore((store) => store.openMovieModal)
+
   const genres = movie.genre_ids
     .map((genreId) => getGenreById(genreId))
     .join(' • ')
+
   return (
     <article className="group relative duration-300 hover:z-20 hover:scale-[1.2]">
       <Image
@@ -26,7 +33,7 @@ export const MovieSliderItem = ({ movie }: Props) => {
 
       <div className="absolute inset-0 flex flex-col justify-end gap-2 bg-black/45 px-6 py-4 opacity-0 duration-300 group-hover:opacity-100">
         <div className="flex gap-2">
-          <MovieActionButton>
+          <MovieActionButton onClick={() => openMovieModal(movie)}>
             <Play />
           </MovieActionButton>
           <MovieActionButton>

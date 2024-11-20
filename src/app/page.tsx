@@ -5,7 +5,12 @@ import {
 } from '@/services'
 
 import { Footer, Navbar } from '@/components/ui'
-import { Hero, MovieSlider, TopRatedMovies } from '@/domains/home/components'
+import {
+  Hero,
+  MovieModal,
+  MovieSlider,
+  TopRatedMovies,
+} from '@/domains/home/components'
 
 export default async function HomePage() {
   const [popularMovies, topRatedMovies, popularFamilyMovies, horrorMovies] =
@@ -18,6 +23,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <MovieModal />
       <Navbar />
       <Hero movie={popularMovies[0]} />
       <div className="-mt-[170px] grid gap-14">

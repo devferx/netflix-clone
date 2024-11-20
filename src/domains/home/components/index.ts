@@ -1,5 +1,6 @@
 export * from './hero'
 export * from './movie-action-button'
+export * from './movie-modal'
 export * from './movie-slider-item'
 export * from './movie-slider'
 export * from './top-rated-movie'
