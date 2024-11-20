@@ -2,9 +2,9 @@
 
 import Image from 'next/image'
 
-import { useMovieModalStore } from '@/store'
+import { useMovieModalStore, useUserMoviesStore, useStore } from '@/store'
 
-import { Dislike, Like, Play, Plus } from '@/components/icons'
+import { Check, Dislike, Like, Play, Plus } from '@/components/icons'
 import { MovieActionButton } from './movie-action-button'
 
 import { getGenreById, getImageUrl } from '@/utils'
@@ -16,6 +16,10 @@ interface Props {
 }
 
 export const MovieSliderItem = ({ movie }: Props) => {
+  const isMovieInUserList = useStore(useUserMoviesStore, (store) =>
+    store.isMovieInUserList(movie.id),
+  )
+  const updateUserMovies = useUserMoviesStore((store) => store.updateUserMovies)
   const openMovieModal = useMovieModalStore((store) => store.openMovieModal)
 
   const genres = movie.genre_ids
@@ -36,8 +40,8 @@ export const MovieSliderItem = ({ movie }: Props) => {
           <MovieActionButton onClick={() => openMovieModal(movie)}>
             <Play />
           </MovieActionButton>
-          <MovieActionButton>
-            <Plus />
+          <MovieActionButton onClick={() => updateUserMovies(movie)}>
+            {isMovieInUserList ? <Check /> : <Plus />}
           </MovieActionButton>
           <MovieActionButton>
             <Like />
