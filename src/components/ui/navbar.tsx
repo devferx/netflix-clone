@@ -8,7 +8,11 @@ import { Bell, Search } from '@/components/icons'
 
 import netflixLogo from '@/assets/images/netflix-logo.png'
 
-export const Navbar = () => {
+interface Props {
+  showLinks?: boolean
+}
+
+export const Navbar = ({ showLinks = true }: Props) => {
   const [background, setBackground] = useState('rgba(20, 20, 20, 0)')
 
   useEffect(() => {
@@ -33,21 +37,27 @@ export const Navbar = () => {
       <div className="flex items-center gap-4">
         <Image width={111} height={26} src={netflixLogo} alt="Netflix" />
 
-        <Link className="font-bold text-white" href="/">
-          Start
-        </Link>
-        <Link className="text-white" href="/">
-          Movies
-        </Link>
-        <Link className="text-white" href="/">
-          My List
-        </Link>
+        {showLinks && (
+          <>
+            <Link className="font-bold text-white" href="/">
+              Start
+            </Link>
+            <Link className="text-white" href="/">
+              Movies
+            </Link>
+            <Link className="text-white" href="/">
+              My List
+            </Link>
+          </>
+        )}
       </div>
 
-      <div className="flex gap-6">
-        <Search />
-        <Bell />
-      </div>
+      {showLinks && (
+        <div className="flex gap-6">
+          <Search />
+          <Bell />
+        </div>
+      )}
     </nav>
   )
 }
