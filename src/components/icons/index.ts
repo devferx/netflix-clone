@@ -1,5 +1,6 @@
 export * from './add-circle'
 export * from './bell'
+export * from './caret-down'
 export * from './check'
 export * from './close'
 export * from './dislike'
