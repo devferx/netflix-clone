@@ -4,7 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { Bell, Search } from '@/components/icons'
+import { useProfileStore, useStore } from '@/store'
+
+import { Bell, CaretDown, Search } from '@/components/icons'
 
 import netflixLogo from '@/assets/images/netflix-logo.png'
 
@@ -13,6 +15,10 @@ interface Props {
 }
 
 export const Navbar = ({ showLinks = true }: Props) => {
+  const profile = useStore(useProfileStore, (state) =>
+    state.getCurrentProfile(),
+  )
+
   const [background, setBackground] = useState('rgba(20, 20, 20, 0)')
 
   useEffect(() => {
@@ -52,10 +58,19 @@ export const Navbar = ({ showLinks = true }: Props) => {
         )}
       </div>
 
-      {showLinks && (
+      {showLinks && profile && (
         <div className="flex gap-6">
           <Search />
           <Bell />
+          <Link className="flex gap-2" href="/select-profile">
+            <Image
+              width={24}
+              height={24}
+              src={profile.avatarImg}
+              alt={`${profile.name} avatar`}
+            />
+            <CaretDown />
+          </Link>
         </div>
       )}
     </nav>
