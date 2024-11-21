@@ -1,3 +1,4 @@
+export * from './add-circle'
 export * from './bell'
 export * from './check'
 export * from './close'
