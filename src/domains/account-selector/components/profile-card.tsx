@@ -10,7 +10,7 @@ export const ProfileCard = ({ name, avatarSrc }: Props) => {
   return (
     <Link
       className="group flex max-w-fit flex-col items-center gap-5 transition-transform duration-300 hover:scale-110 focus:scale-110"
-      href="/"
+      href="/home"
     >
       <Image
         width={200}
