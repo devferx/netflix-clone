@@ -53,7 +53,7 @@ export const Navbar = ({ showLinks = true }: Props) => {
             <Link className="text-white" href="/">
               Movies
             </Link>
-            <Link className="text-white" href="/">
+            <Link className="text-white" href="/my-list">
               My List
             </Link>
           </>

@@ -10,12 +10,15 @@ import { MovieActionButton } from './movie-action-button'
 import { getGenreById, getImageUrl } from '@/utils'
 
 import type { Movie } from '@/interfaces'
+import clsx from 'clsx'
 
 interface Props {
   movie: Movie
+  scaleOnHover?: boolean
 }
 
-export const MovieSliderItem = ({ movie }: Props) => {
+// TODO: move to general components
+export const MovieSliderItem = ({ movie, scaleOnHover = true }: Props) => {
   const isMovieInUserList = useStore(useUserMoviesStore, (store) =>
     store.isMovieInUserList(movie.id),
   )
@@ -27,8 +30,14 @@ export const MovieSliderItem = ({ movie }: Props) => {
     .join(' • ')
 
   return (
-    <article className="group relative duration-300 hover:z-20 hover:scale-[1.2]">
+    <article
+      className={clsx(
+        'group relative duration-300 hover:z-20',
+        scaleOnHover && 'hover:scale-[1.2]',
+      )}
+    >
       <Image
+        className="w-full"
         src={getImageUrl(movie.backdrop_path)}
         width={400}
         height={225}

@@ -11,6 +11,7 @@ interface userMoviesMap {
 
 interface State {
   userMoviesMap: userMoviesMap
+  getCurrentUserMovies: () => Movie[]
   updateUserMovies: (movie: Movie) => void
   isMovieInUserList: (movieId: number) => boolean
 }
@@ -24,6 +25,11 @@ export const useUserMoviesStore = create<State>()(
   persist(
     (set, get) => ({
       userMoviesMap: {},
+      getCurrentUserMovies: () => {
+        const profileId = getCurrentProfileId()
+        if (!profileId) return []
+        return Object.values(get().userMoviesMap[profileId] || {})
+      },
       isMovieInUserList: (movieId: number) => {
         const profileId = getCurrentProfileId()
         if (!profileId) return false
