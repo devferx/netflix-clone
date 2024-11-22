@@ -9,7 +9,7 @@ import {
 
 import { Footer, Navbar } from '@/components/ui'
 import {
-  Hero,
+  MovieHero,
   MovieModal,
   MovieSlider,
   TopRatedMovies,
@@ -35,7 +35,7 @@ export default async function HomePage() {
     <main>
       <MovieModal />
       <Navbar />
-      <Hero
+      <MovieHero
         movieId={firstPopularMovie.id}
         title={firstPopularMovie.title}
         overview={firstPopularMovie.overview}

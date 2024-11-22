@@ -1,4 +1,4 @@
-export * from './hero'
+export * from '../../../components/ui/movie-hero'
 export * from './movie-action-button'
 export * from './movie-modal'
 export * from './movie-slider-item'

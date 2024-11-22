@@ -1,6 +1,6 @@
 import { getMovieDetails } from '@/services'
 import { Navbar } from '@/components/ui'
-import { Hero } from '@/domains/home/components'
+import { MovieHero } from '@/domains/home/components'
 
 interface Props {
   params: {
@@ -15,7 +15,7 @@ export default async function SingleMoviePage(props: Props) {
   return (
     <main>
       <Navbar />
-      <Hero
+      <MovieHero
         movieId={movieId}
         title={movieDetails.title}
         overview={movieDetails.overview}

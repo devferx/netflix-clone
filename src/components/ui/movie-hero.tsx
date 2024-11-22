@@ -11,7 +11,7 @@ interface Props {
   backdrop_path: string
 }
 
-export const Hero = ({ title, overview, backdrop_path }: Props) => {
+export const MovieHero = ({ title, overview, backdrop_path }: Props) => {
   return (
     <header className="relative h-[calc(100vh-200px)]">
       <div className="absolute bottom-[200px] left-16 z-20 grid max-w-[600px] gap-4">
