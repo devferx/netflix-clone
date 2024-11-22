@@ -41,7 +41,9 @@ export const Navbar = ({ showLinks = true }: Props) => {
       style={{ background }}
     >
       <div className="flex items-center gap-4">
-        <Image width={111} height={26} src={netflixLogo} alt="Netflix" />
+        <Link href="/">
+          <Image width={111} height={26} src={netflixLogo} alt="Netflix" />
+        </Link>
 
         {showLinks && (
           <>
