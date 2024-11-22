@@ -1,4 +1,4 @@
-import type { GetMovieList, Movie } from '@/interfaces'
+import type { GetMovieList, Movie, MovieDetails } from '@/interfaces'
 import { movieApi } from './movie-api'
 
 export const getPopularMovies = async (): Promise<Movie[]> => {
@@ -52,4 +52,11 @@ export const getPopularMoviesByGenres = async (
     },
   })
   return data.results
+}
+
+export const getMovieDetails = async (
+  movieId: string | number,
+): Promise<MovieDetails> => {
+  const { data } = await movieApi.get<MovieDetails>(`/movie/${movieId}`)
+  return data
 }

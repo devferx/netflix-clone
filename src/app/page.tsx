@@ -29,11 +29,18 @@ export default async function HomePage() {
       getPopularMoviesByGenres('27,53'),
     ])
 
+  const [firstPopularMovie] = popularMovies
+
   return (
     <main>
       <MovieModal />
       <Navbar />
-      <Hero movie={popularMovies[0]} />
+      <Hero
+        movieId={firstPopularMovie.id}
+        title={firstPopularMovie.title}
+        overview={firstPopularMovie.overview}
+        backdrop_path={firstPopularMovie.backdrop_path}
+      />
       <div className="-mt-[170px] grid gap-14">
         <MovieSlider title="Popular movies" movies={popularMovies} />
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />

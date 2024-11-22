@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { getImageUrl } from '@/utils'
 
@@ -12,9 +13,9 @@ interface Props {
 
 export const TopRatedMovie = ({ movie, index }: Props) => {
   return (
-    <div
-      key={movie.id}
+    <Link
       className={'relative flex min-w-fit items-center gap-10 pl-[90px]'}
+      href={`/movie/${movie.id}`}
     >
       <span
         className={clsx(
@@ -31,6 +32,6 @@ export const TopRatedMovie = ({ movie, index }: Props) => {
         src={getImageUrl(movie.poster_path, 'w300')}
         alt={movie.title}
       />
-    </div>
+    </Link>
   )
 }
