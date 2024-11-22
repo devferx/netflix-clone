@@ -2,14 +2,16 @@ import { getMovieDetails } from '@/services'
 import { Navbar } from '@/components/ui'
 import { MovieHero } from '@/domains/home/components'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default async function SingleMoviePage(props: Props) {
-  const { id: movieId } = props.params
+export default async function SingleMoviePage({ params }: Props) {
+  const { id: movieId } = await params
   const movieDetails = await getMovieDetails(movieId)
 
   return (
