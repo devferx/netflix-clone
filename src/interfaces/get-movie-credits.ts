@@ -1,4 +1,4 @@
-import { Cast } from './cast'
+import { Cast } from '@/models'
 
 export interface GetMovieCredits {
   id: number
