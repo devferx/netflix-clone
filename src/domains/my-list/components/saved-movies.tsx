@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 
 import { useUserMoviesStore } from '@/store'
-import { MovieSliderItem } from '@/domains/home/components'
+
+import { MovieCard } from '@/domains/home/components'
 
 export const SavedMovies = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -23,11 +24,7 @@ export const SavedMovies = () => {
       <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-between gap-7">
         {isLoaded &&
           movies.map((movie) => (
-            <MovieSliderItem
-              key={movie.id}
-              movie={movie}
-              scaleOnHover={false}
-            />
+            <MovieCard key={movie.id} movie={movie} scaleOnHover={false} />
           ))}
       </div>
     </section>

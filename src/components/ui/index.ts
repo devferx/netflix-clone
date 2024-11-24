@@ -1,2 +1,5 @@
 export * from './footer'
+export * from './movie-action-button'
+export * from './movie-hero'
+export * from './movie-card'
 export * from './navbar'

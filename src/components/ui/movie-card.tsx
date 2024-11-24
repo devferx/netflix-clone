@@ -17,8 +17,7 @@ interface Props {
   scaleOnHover?: boolean
 }
 
-// TODO: move to general components
-export const MovieSliderItem = ({ movie, scaleOnHover = true }: Props) => {
+export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
   const isMovieInUserList = useStore(useUserMoviesStore, (store) =>
     store.isMovieInUserList(movie.id),
   )

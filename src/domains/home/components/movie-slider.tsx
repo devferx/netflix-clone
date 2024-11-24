@@ -3,7 +3,7 @@
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { MovieSliderItem } from './movie-slider-item'
+import { MovieCard } from '@/components/ui/movie-card'
 
 import type { Movie } from '@/interfaces'
 
@@ -36,7 +36,7 @@ export const MovieSlider = ({ title, movies }: Props) => {
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id} className="py-5">
-            <MovieSliderItem movie={movie} />
+            <MovieCard movie={movie} />
           </SwiperSlide>
         ))}
       </Swiper>
