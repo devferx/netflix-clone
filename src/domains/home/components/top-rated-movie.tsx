@@ -13,10 +13,7 @@ interface Props {
 
 export const TopRatedMovie = ({ movie, index }: Props) => {
   return (
-    <Link
-      className={'relative flex min-w-fit items-center gap-10 pl-[90px]'}
-      href={`/movie/${movie.id}`}
-    >
+    <div className={'relative flex min-w-fit items-center gap-10 pl-[90px]'}>
       <span
         className={clsx(
           'font-outline-4 absolute -top-[20px] z-10 select-none text-[220px] font-extrabold tracking-[-0.13em] text-transparent',
@@ -25,13 +22,15 @@ export const TopRatedMovie = ({ movie, index }: Props) => {
       >
         {index + 1}
       </span>
-      <Image
-        className="relative z-20 w-[200px] select-none object-cover"
-        width={200}
-        height={300}
-        src={getImageUrl(movie.poster_path, 'w300')}
-        alt={movie.title}
-      />
-    </Link>
+      <Link className="relative z-20" href={`/movie/${movie.id}`}>
+        <Image
+          className="w-[200px] select-none object-cover"
+          width={200}
+          height={300}
+          src={getImageUrl(movie.poster_path, 'w300')}
+          alt={movie.title}
+        />
+      </Link>
+    </div>
   )
 }
