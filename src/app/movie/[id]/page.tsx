@@ -1,7 +1,10 @@
-import { getMovieCast, getMovieDetails } from '@/services'
+import Image from 'next/image'
+
+import { getMovieCast, getMovieDetails, getMovieImages } from '@/services'
+
 import { Navbar } from '@/components/ui'
 import { MovieHero } from '@/domains/home/components'
-import Image from 'next/image'
+
 import { getImageUrl } from '@/utils'
 
 export const dynamic = 'force-dynamic'
@@ -14,10 +17,12 @@ interface Props {
 
 export default async function SingleMoviePage({ params }: Props) {
   const { id: movieId } = await params
-  const [movieDetails, movieCast] = await Promise.all([
+  const [movieDetails, movieCast, movieImages] = await Promise.all([
     getMovieDetails(movieId),
     getMovieCast(movieId),
+    getMovieImages(movieId),
   ])
+  const { movieLogo, movieBackdrops } = movieImages
 
   return (
     <main>
@@ -26,7 +31,9 @@ export default async function SingleMoviePage({ params }: Props) {
         movieId={movieId}
         title={movieDetails.title}
         overview={movieDetails.overview}
+        movieLogo={movieLogo}
         backdrop_path={movieDetails.backdrop_path}
+        paddingBottom={false}
       />
 
       <section>
@@ -54,19 +61,18 @@ export default async function SingleMoviePage({ params }: Props) {
           ))}
         </div>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          doloremque fugit quasi? Nemo labore, consequuntur deleniti ipsa nobis,
-          quis doloremque, temporibus ad magnam porro itaque. Doloremque quidem
-          magni incidunt! Laudantium.
-        </p>
+        <div className="grid grid-cols-4">
+          {movieBackdrops.map((image) => (
+            <Image
+              key={image}
+              src={getImageUrl(image)}
+              width={200}
+              height={300}
+              alt={image}
+            />
+          ))}
+        </div>
       </section>
-      {/* <code>
-        <pre>{JSON.stringify(movieCast, null, 4)}</pre>
-      </code>
-      <code>
-        <pre>{JSON.stringify(movieDetails, null, 4)}</pre>
-      </code> */}
     </main>
   )
 }
