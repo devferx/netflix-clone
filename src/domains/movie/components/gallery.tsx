@@ -1,10 +1,10 @@
 'use client'
 
+import clsx from 'clsx'
 import Image from 'next/image'
+import { useState } from 'react'
 
 import { getImageUrl } from '@/utils'
-import { useState } from 'react'
-import clsx from 'clsx'
 
 interface Props {
   photos: string[]
