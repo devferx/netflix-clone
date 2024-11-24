@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { MovieCard } from '@/components/ui/movie-card'
 
-import type { Movie } from '@/interfaces'
+import type { Movie } from '@/models'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

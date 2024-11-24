@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware'
 
 import { PROFILES } from '@/constants'
 
-import type { Profile } from '@/interfaces'
+import type { Profile } from '@/models'
 
 interface State {
   profiles: Record<string, Profile>

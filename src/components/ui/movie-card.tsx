@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import clsx from 'clsx'
 
 import { useMovieModalStore, useUserMoviesStore, useStore } from '@/store'
 
@@ -9,8 +10,7 @@ import { MovieActionButton } from './movie-action-button'
 
 import { getGenreById, getImageUrl } from '@/utils'
 
-import type { Movie } from '@/interfaces'
-import clsx from 'clsx'
+import type { Movie } from '@/models'
 
 interface Props {
   movie: Movie

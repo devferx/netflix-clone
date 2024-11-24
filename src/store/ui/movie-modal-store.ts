@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import type { Movie } from '@/interfaces'
+import type { Movie } from '@/models'
 
 interface State {
   currentMovie: Movie | null

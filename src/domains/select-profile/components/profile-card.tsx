@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import { useProfileStore } from '@/store'
 
-import type { Profile } from '@/interfaces'
+import type { Profile } from '@/models'
 
 interface Props {
   profile: Profile

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { TopRatedMovie } from './top-rated-movie'
 
-import type { Movie } from '@/interfaces'
+import type { Movie } from '@/models'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

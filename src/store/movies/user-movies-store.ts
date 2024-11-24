@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware'
 
 import { useProfileStore } from '../'
 
-import type { Movie } from '@/interfaces'
+import type { Movie } from '@/models'
 
 interface userMoviesMap {
   [profileId: string]: Record<string, Movie>

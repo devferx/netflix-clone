@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { getImageUrl } from '@/utils'
 
-import type { Movie } from '@/interfaces'
+import type { Movie } from '@/models'
 
 interface Props {
   movie: Movie
