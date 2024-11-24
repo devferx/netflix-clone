@@ -1,4 +1,4 @@
-import { getMovieDetails } from '@/services'
+import { getMovieCast, getMovieDetails } from '@/services'
 import { Navbar } from '@/components/ui'
 import { MovieHero } from '@/domains/home/components'
 
@@ -12,7 +12,10 @@ interface Props {
 
 export default async function SingleMoviePage({ params }: Props) {
   const { id: movieId } = await params
-  const movieDetails = await getMovieDetails(movieId)
+  const [movieDetails, movieCast] = await Promise.all([
+    getMovieDetails(movieId),
+    getMovieCast(movieId),
+  ])
 
   return (
     <main>
@@ -23,6 +26,9 @@ export default async function SingleMoviePage({ params }: Props) {
         overview={movieDetails.overview}
         backdrop_path={movieDetails.backdrop_path}
       />
+      <code>
+        <pre>{JSON.stringify(movieCast, null, 4)}</pre>
+      </code>
       <code>
         <pre>{JSON.stringify(movieDetails, null, 4)}</pre>
       </code>
