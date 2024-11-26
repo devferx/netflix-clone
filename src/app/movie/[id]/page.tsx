@@ -1,15 +1,34 @@
-import { getMovieCast, getMovieDetails, getMovieImages } from '@/services'
+import {
+  getMovieCast,
+  getMovieDetails,
+  getMovieImages,
+  getPopularMovies,
+  getTopRatedMovies,
+} from '@/services'
 
 import { Navbar } from '@/components/ui'
 import { MovieHero } from '@/domains/home/components'
 import { CastSlider, Gallery } from '@/domains/movie/components'
 
-export const dynamic = 'force-dynamic'
+import type { Movie } from '@/models'
+
+export const revalidate = false
+export const dynamicParams = true
 
 interface Props {
   params: Promise<{
     id: string
   }>
+}
+
+export async function generateStaticParams() {
+  const moviesIds: string[] = (
+    await Promise.all([getPopularMovies(), getTopRatedMovies()])
+  )
+    .flat()
+    .map((movie: Movie) => String(movie.id))
+
+  return moviesIds.map((id) => ({ params: { id } }))
 }
 
 export default async function SingleMoviePage({ params }: Props) {
