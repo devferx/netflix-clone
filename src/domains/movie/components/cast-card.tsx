@@ -11,7 +11,7 @@ interface Props {
 export const CastCard = ({ cast }: Props) => (
   <article className="group relative mx-2 my-6 h-[350px] min-w-[200px] overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.09]">
     <div className="absolute bottom-0 left-0 right-0 z-50 px-3 pb-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-      <h3>{cast.name}</h3>
+      <h3 className="font-bold">{cast.name}</h3>
       <p>{cast.character}</p>
     </div>
 
@@ -20,8 +20,8 @@ export const CastCard = ({ cast }: Props) => (
     <Image
       className="relative h-full w-full object-cover"
       src={getImageUrl(cast?.profile_path || '')}
-      width={200}
-      height={350}
+      width={300}
+      height={400}
       alt={cast.name}
     />
   </article>

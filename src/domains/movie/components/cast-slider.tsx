@@ -18,15 +18,15 @@ export const CastSlider = ({ cast }: Props) => {
 
       <Swiper
         className="mx-16 w-full"
-        slidesPerView={2}
+        slidesPerView={3}
         spaceBetween={16}
         modules={[Navigation]}
         navigation={true}
         breakpoints={{
-          768: { slidesPerView: 2.7 },
-          1024: { slidesPerView: 3.5 },
-          1280: { slidesPerView: 4 },
-          1440: { slidesPerView: 5.5 },
+          768: { slidesPerView: 3.7 },
+          1024: { slidesPerView: 4.5 },
+          1280: { slidesPerView: 5 },
+          1440: { slidesPerView: 6 },
         }}
       >
         {cast.map((castItem) => (
