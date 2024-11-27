@@ -19,7 +19,7 @@ export const CastCard = ({ cast }: Props) => (
 
     <Image
       className="relative h-full w-full object-cover"
-      src={getImageUrl(cast?.profile_path || '')}
+      src={getImageUrl(cast?.profile_path || '', 'w500', 'profile')}
       width={300}
       height={400}
       alt={cast.name}
