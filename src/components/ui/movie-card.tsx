@@ -38,7 +38,7 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
         )}
       >
         <Image
-          className="w-full"
+          className="max-h-[180px] w-full object-cover"
           src={getImageUrl(movie.backdrop_path)}
           width={400}
           height={225}
