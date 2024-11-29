@@ -87,7 +87,7 @@ export const getMovieImages = async (
 
   const { backdrops, logos } = data
 
-  const movieLogo = logos[0].file_path ?? null
+  const movieLogo = logos[0]?.file_path ?? null
   const movieBackdrops = backdrops.map((backdrop) => backdrop.file_path)
 
   return { movieLogo, movieBackdrops }
