@@ -4,8 +4,9 @@ import type {
   GetMovieCredits,
   GetMovieImages,
   GetMovieList,
+  GetMovieVideosResponse,
 } from '@/interfaces'
-import type { Cast, Movie, MovieDetails } from '@/models'
+import type { Cast, Movie, MovieDetails, Video } from '@/models'
 
 export const getPopularMovies = async (): Promise<Movie[]> => {
   const { data } = await movieApi.get<GetMovieList>('/movie/popular')
@@ -91,4 +92,13 @@ export const getMovieImages = async (
   const movieBackdrops = backdrops.map((backdrop) => backdrop.file_path)
 
   return { movieLogo, movieBackdrops }
+}
+
+export const getMovieVideos = async (
+  movieId: string | number,
+): Promise<Video[]> => {
+  const { data } = await movieApi.get<GetMovieVideosResponse>(
+    `/movie/${movieId}/videos`,
+  )
+  return data.results
 }

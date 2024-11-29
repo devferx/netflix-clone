@@ -4,6 +4,7 @@ import { Info, Play } from '@/components/icons'
 
 import { getImageUrl } from '@/utils'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 interface Props {
   movieId: string | number
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const MovieHero = ({
+  movieId,
   title,
   overview,
   backdrop_path,
@@ -44,10 +46,13 @@ export const MovieHero = ({
         </h3>
         <p>{overview}</p>
         <div className="flex gap-4">
-          <button className="flex items-center gap-1 rounded bg-white px-4 py-2 font-bold text-black">
+          <Link
+            className="flex items-center gap-1 rounded bg-white px-4 py-2 font-bold text-black"
+            href={`/watch/${movieId}`}
+          >
             <Play />
             <span>Play</span>
-          </button>
+          </Link>
           <button className="flex items-center gap-1 rounded bg-white/50 px-4 py-2 font-bold">
             <Info />
             <span>More info</span>
