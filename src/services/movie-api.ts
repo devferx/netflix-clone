@@ -7,6 +7,6 @@ export const movieApi = axios.create({
     Authorization: `Bearer ${process.env.THE_MOVIE_DB_API_KEY}`,
   },
   params: {
-    language: 'es',
+    language: 'en',
   },
 })
