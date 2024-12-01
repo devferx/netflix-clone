@@ -53,10 +53,13 @@ export const MovieHero = ({
             <Play />
             <span>Play</span>
           </Link>
-          <button className="flex items-center gap-1 rounded bg-white/50 px-4 py-2 font-bold">
+          <Link
+            className="flex items-center gap-1 rounded bg-white/50 px-4 py-2 font-bold"
+            href={`/movie/${movieId}`}
+          >
             <Info />
             <span>More info</span>
-          </button>
+          </Link>
         </div>
       </div>
 
