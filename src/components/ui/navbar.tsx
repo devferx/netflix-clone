@@ -9,6 +9,7 @@ import { useProfileStore, useStore } from '@/store'
 import { Bell, CaretDown, Search } from '@/components/icons'
 
 import netflixLogo from '@/assets/images/netflix-logo.png'
+import { NavLink } from './nav-link'
 
 interface Props {
   showLinks?: boolean
@@ -47,15 +48,29 @@ export const Navbar = ({ showLinks = true }: Props) => {
 
         {showLinks && (
           <>
-            <Link className="font-bold text-white" href="/">
+            <NavLink
+              className="text-white"
+              activeClassName="font-bold"
+              href="/"
+              exact
+            >
               Start
-            </Link>
-            <Link className="text-white" href="/">
+            </NavLink>
+
+            {/* <NavLink
+              className="text-white"
+              activeClassName="font-bold"
+              href="/movies"
+            >
               Movies
-            </Link>
-            <Link className="text-white" href="/my-list">
+            </NavLink> */}
+            <NavLink
+              className="text-white"
+              activeClassName="font-bold"
+              href="/my-list"
+            >
               My List
-            </Link>
+            </NavLink>
           </>
         )}
       </div>
