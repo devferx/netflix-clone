@@ -1,10 +1,10 @@
 import Image from 'next/image'
+import clsx from 'clsx'
+import Link from 'next/link'
 
 import { Info, Play } from '@/components/icons'
 
 import { getImageUrl } from '@/utils'
-import clsx from 'clsx'
-import Link from 'next/link'
 
 interface Props {
   movieId: string | number
