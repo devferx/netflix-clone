@@ -1,24 +1,26 @@
 'use client'
 
+import { setCookie } from 'cookies-next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { setCookie } from 'cookies-next'
+import { useEffect, useState } from 'react'
 
 import { useProfileStore, useStore } from '@/store'
 
-import { Bell, CaretDown, Search } from '@/components/icons'
-import { NavLink } from './nav-link'
+import { Bell, CaretDown } from '@/components/icons'
 import { PROFILES } from '@/constants'
+import { NavLink } from './nav-link'
 
 import netflixLogo from '@/assets/images/netflix-logo.png'
+import { NavbarSearch } from './navbar-search'
 
 interface Props {
   showLinks?: boolean
+  searchQuery?: string
 }
 
-export const Navbar = ({ showLinks = true }: Props) => {
+export const Navbar = ({ showLinks = true, searchQuery = '' }: Props) => {
   const router = useRouter()
   const profiles = PROFILES
   const profile = useStore(useProfileStore, (state) =>
@@ -81,9 +83,8 @@ export const Navbar = ({ showLinks = true }: Props) => {
 
       {showLinks && profile && (
         <div className="relative flex gap-6">
-          <div className="py-8">
-            <Search />
-          </div>
+          <NavbarSearch searchQuery={searchQuery} />
+
           <div className="py-8">
             <Bell />
           </div>
