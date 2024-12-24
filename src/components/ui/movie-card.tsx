@@ -30,41 +30,41 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
     .join(' • ')
 
   return (
-    <Link href={`/movie/${movie.id}`}>
-      <article
-        className={clsx(
-          'group relative duration-300 hover:z-20',
-          scaleOnHover && 'hover:scale-[1.2]',
-        )}
-      >
-        <Image
-          className="max-h-[180px] w-full object-cover"
-          src={getImageUrl(movie.backdrop_path)}
-          width={400}
-          height={225}
-          alt={movie.title}
-        />
+    <article
+      className={clsx(
+        'group relative duration-300 hover:z-20',
+        scaleOnHover && 'hover:scale-[1.2]',
+      )}
+    >
+      <Image
+        className="max-h-[180px] w-full object-cover"
+        src={getImageUrl(movie.backdrop_path)}
+        width={400}
+        height={225}
+        alt={movie.title}
+      />
 
-        <div className="absolute inset-0 flex flex-col justify-end gap-2 bg-black/45 px-6 py-4 opacity-0 duration-300 group-hover:opacity-100">
-          <div className="flex gap-2">
-            <MovieActionButton onClick={() => openMovieModal(movie)}>
-              <Play />
-            </MovieActionButton>
-            <MovieActionButton onClick={() => updateUserMovies(movie)}>
-              {isMovieInUserList ? <Check /> : <Plus />}
-            </MovieActionButton>
-            <MovieActionButton>
-              <Like />
-            </MovieActionButton>
-            <MovieActionButton>
-              <Dislike />
-            </MovieActionButton>
-          </div>
-
-          <h4 className="font-bold">{movie.title}</h4>
-          <span className="text-xs">{genres}</span>
+      <div className="absolute inset-0 flex flex-col justify-end gap-2 bg-black/45 px-6 py-4 opacity-0 duration-300 group-hover:opacity-100">
+        <div className="flex gap-2">
+          <MovieActionButton onClick={() => openMovieModal(movie)}>
+            <Play />
+          </MovieActionButton>
+          <MovieActionButton onClick={() => updateUserMovies(movie)}>
+            {isMovieInUserList ? <Check /> : <Plus />}
+          </MovieActionButton>
+          <MovieActionButton>
+            <Like />
+          </MovieActionButton>
+          <MovieActionButton>
+            <Dislike />
+          </MovieActionButton>
         </div>
-      </article>
-    </Link>
+
+        <Link href={`/movie/${movie.id}`}>
+          <h4 className="font-bold underline">{movie.title}</h4>
+        </Link>
+        <span className="text-xs">{genres}</span>
+      </div>
+    </article>
   )
 }
