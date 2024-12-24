@@ -5,17 +5,12 @@ import { useProfileStore } from '../'
 
 import type { Movie } from '@/models'
 
-interface userMoviesMap {
+interface UserMoviesMap {
   [profileId: string]: Record<string, Movie>
 }
 
-interface UserCategories {
-  [profileId: string]: Record<string, number>
-}
-
 interface State {
-  userMoviesMap: userMoviesMap
-  userCategories: UserCategories
+  userMoviesMap: UserMoviesMap
   getCurrentUserMovies: () => Movie[]
   updateUserMovies: (movie: Movie) => void
   isMovieInUserList: (movieId: number) => boolean
@@ -30,7 +25,6 @@ export const useUserMoviesStore = create<State>()(
   persist(
     (set, get) => ({
       userMoviesMap: {},
-      userCategories: {},
       getCurrentUserMovies: () => {
         const profileId = getCurrentProfileId()
         if (!profileId) return []
