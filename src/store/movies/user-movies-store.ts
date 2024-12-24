@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { useProfileStore } from '../'
+import { getCurrentProfileId } from '../profile/profile-store'
 
 import type { Movie } from '@/models'
 
@@ -14,11 +14,6 @@ interface State {
   getCurrentUserMovies: () => Movie[]
   updateUserMovies: (movie: Movie) => void
   isMovieInUserList: (movieId: number) => boolean
-}
-
-const getCurrentProfileId = () => {
-  const currentProfile = useProfileStore.getState().getCurrentProfile()
-  return currentProfile ? currentProfile.id : null
 }
 
 export const useUserMoviesStore = create<State>()(
@@ -42,8 +37,7 @@ export const useUserMoviesStore = create<State>()(
 
         const userMoviesMap = { ...get().userMoviesMap }
 
-        const isMovieInUserList = get().isMovieInUserList(movie.id)
-        if (isMovieInUserList) {
+        if (get().isMovieInUserList(movie.id)) {
           delete userMoviesMap[profileId][movie.id]
         } else {
           userMoviesMap[profileId] = {

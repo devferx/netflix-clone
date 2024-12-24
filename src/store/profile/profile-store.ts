@@ -30,3 +30,8 @@ export const useProfileStore = create<State>()(
     { name: 'profile-store' },
   ),
 )
+
+export const getCurrentProfileId = (): string | null => {
+  const currentProfile = useProfileStore.getState().getCurrentProfile()
+  return currentProfile ? currentProfile.id : null
+}
