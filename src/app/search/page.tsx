@@ -1,4 +1,4 @@
-import { Footer, MovieCard, Navbar } from '@/components/ui'
+import { Footer, MovieCard, Navbar, NotFound } from '@/components/ui'
 import { getMovieBySearch } from '@/services'
 
 interface Props {
@@ -15,6 +15,10 @@ export default async function SearchPage({ searchParams }: Props) {
     <main>
       <Navbar searchQuery={query} />
       <section className="mt-24 px-16">
+        {movieResults.length === 0 && (
+          <NotFound message={`No movies found for "${query}"`} />
+        )}
+
         <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-between gap-7">
           {movieResults.map((movie) => (
             <MovieCard key={movie.id} movie={movie} scaleOnHover={false} />
