@@ -28,7 +28,7 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
   const updateUserMovies = useUserMoviesStore((store) => store.updateUserMovies)
   const openMovieModal = useMovieModalStore((store) => store.openMovieModal)
 
-  const genres = movie.genre_ids
+  const genres = (movie?.genre_ids ?? [])
     .map((genreId) => getGenreById(genreId))
     .join(' • ')
 
