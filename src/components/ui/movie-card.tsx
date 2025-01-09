@@ -12,6 +12,7 @@ import { MovieActionButton } from './movie-action-button'
 import { getGenreById, getImageUrl } from '@/utils'
 
 import type { Movie } from '@/models'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   movie: Movie
@@ -19,6 +20,8 @@ interface Props {
 }
 
 export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
+  const router = useRouter()
+
   const isMovieInUserList = useStore(useUserMoviesStore, (store) =>
     store.isMovieInUserList(movie.id),
   )
@@ -29,12 +32,27 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
     .map((genreId) => getGenreById(genreId))
     .join(' • ')
 
+  const onClickCard = () => {
+    router.push(`/movie/${movie.id}`)
+  }
+
+  const onClickPlay = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    openMovieModal(movie)
+  }
+
+  const onClickAddToList = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    updateUserMovies(movie)
+  }
+
   return (
     <article
       className={clsx(
-        'group relative duration-300 hover:z-20',
+        'group relative cursor-pointer duration-300 hover:z-20',
         scaleOnHover && 'hover:scale-[1.2]',
       )}
+      onClick={onClickCard}
     >
       <Image
         className="max-h-[180px] w-full object-cover"
@@ -46,10 +64,10 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
 
       <div className="absolute inset-0 flex flex-col justify-end gap-2 bg-black/45 px-6 py-4 opacity-0 duration-300 group-hover:opacity-100">
         <div className="flex gap-2">
-          <MovieActionButton onClick={() => openMovieModal(movie)}>
+          <MovieActionButton onClick={onClickPlay}>
             <Play />
           </MovieActionButton>
-          <MovieActionButton onClick={() => updateUserMovies(movie)}>
+          <MovieActionButton onClick={onClickAddToList}>
             {isMovieInUserList ? <Check /> : <Plus />}
           </MovieActionButton>
           <MovieActionButton>
@@ -61,7 +79,7 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
         </div>
 
         <Link href={`/movie/${movie.id}`}>
-          <h4 className="font-bold underline">{movie.title}</h4>
+          <h4 className="font-bold">{movie.title}</h4>
         </Link>
         <span className="text-xs">{genres}</span>
       </div>
