@@ -15,7 +15,7 @@ export const CastCard = ({ cast }: Props) => (
       <p>{cast.character}</p>
     </div>
 
-    <div className="absolute z-10 h-full w-full bg-gradient-to-t from-black to-transparent to-50% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    <div className="absolute z-10 h-full w-full bg-linear-to-t from-black to-transparent to-50% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
     <Image
       className="relative h-full w-full object-cover"
