@@ -47,14 +47,14 @@ export const MovieHero = ({
         <p>{overview}</p>
         <div className="flex gap-4">
           <Link
-            className="flex items-center gap-1 rounded bg-white px-4 py-2 font-bold text-black"
+            className="flex items-center gap-1 rounded-sm bg-white px-4 py-2 font-bold text-black"
             href={`/watch/${movieId}`}
           >
             <Play />
             <span>Play</span>
           </Link>
           <Link
-            className="flex items-center gap-1 rounded bg-white/50 px-4 py-2 font-bold"
+            className="flex items-center gap-1 rounded-sm bg-white/50 px-4 py-2 font-bold"
             href={`/movie/${movieId}`}
           >
             <Info />
