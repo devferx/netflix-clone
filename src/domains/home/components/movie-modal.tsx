@@ -15,10 +15,10 @@ export const MovieModal = () => {
   if (!currentMovie) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] grid place-items-center bg-black/55">
+    <div className="fixed inset-0 z-9999 grid place-items-center bg-black/55">
       <article className="relative max-h-[90%] w-[650px] overflow-y-auto rounded-lg border border-white/50 bg-[#141414]">
         <button
-          className="absolute right-5 top-5 z-30"
+          className="absolute top-5 right-5 z-30"
           onClick={() => closeMovieModal()}
         >
           <Close />
@@ -37,7 +37,7 @@ export const MovieModal = () => {
 
         <div className="relative z-20 -mt-10 flex items-start gap-8 p-10 pt-0">
           <Image
-            className="rounded object-cover"
+            className="rounded-sm object-cover"
             width={150}
             height={250}
             src={getImageUrl(currentMovie.poster_path, 'w300')}
@@ -45,7 +45,7 @@ export const MovieModal = () => {
           />
 
           <div className="mt-14 grid flex-1 gap-3">
-            <h3 className="text-balance text-xl font-bold">
+            <h3 className="text-xl font-bold text-balance">
               {currentMovie.title}
             </h3>
             <p className="text-pretty">{currentMovie.overview}</p>

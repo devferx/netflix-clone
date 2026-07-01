@@ -10,12 +10,12 @@ interface Props {
 
 export const CastCard = ({ cast }: Props) => (
   <article className="group relative mx-2 my-6 h-[350px] min-w-[200px] overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.09]">
-    <div className="absolute bottom-0 left-0 right-0 z-50 px-3 pb-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+    <div className="absolute right-0 bottom-0 left-0 z-50 px-3 pb-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
       <h3 className="font-bold">{cast.name}</h3>
       <p>{cast.character}</p>
     </div>
 
-    <div className="absolute z-10 h-full w-full bg-gradient-to-t from-black to-transparent to-50% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    <div className="absolute z-10 h-full w-full bg-linear-to-t from-black to-transparent to-50% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
     <Image
       className="relative h-full w-full object-cover"

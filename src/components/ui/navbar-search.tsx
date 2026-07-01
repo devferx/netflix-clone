@@ -34,7 +34,7 @@ export const NavbarSearch: React.FC<Props> = ({ searchQuery }) => {
           <Search />
 
           <input
-            className="bg-transparent text-white outline-none"
+            className="bg-transparent text-white outline-hidden"
             type="text"
             placeholder="Search"
             value={search}

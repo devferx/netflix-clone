@@ -1,7 +1,6 @@
 'use client'
 
 import clsx from 'clsx'
-import Image from 'next/image'
 import { useState } from 'react'
 
 import { getImageUrl } from '@/utils'
@@ -30,12 +29,10 @@ export const Gallery = ({ photos }: Props) => {
         )}
       >
         {photos.map((image) => (
-          <Image
+          <img
             className="h-[200px] w-full object-cover"
             key={image}
             src={getImageUrl(image)}
-            width={400}
-            height={500}
             alt={image}
           />
         ))}

@@ -16,15 +16,15 @@ export const TopRatedMovie = ({ movie, index }: Props) => {
     <div className={'relative flex min-w-fit items-center gap-10 pl-[90px]'}>
       <span
         className={clsx(
-          'font-outline-4 absolute -top-[20px] z-10 select-none text-[220px] font-extrabold tracking-[-0.13em] text-transparent',
-          index >= 9 ? '-left-6 top-[20px] text-[180px]' : '-left-0',
+          'font-outline-4 absolute -top-[20px] z-10 text-[220px] font-extrabold tracking-[-0.13em] text-transparent select-none',
+          index >= 9 ? 'top-[20px] -left-6 text-[180px]' : '-left-0',
         )}
       >
         {index + 1}
       </span>
       <Link className="relative z-20" href={`/movie/${movie.id}`}>
         <Image
-          className="w-[200px] select-none object-cover"
+          className="w-[200px] object-cover select-none"
           width={200}
           height={300}
           src={getImageUrl(movie.poster_path, 'w300')}

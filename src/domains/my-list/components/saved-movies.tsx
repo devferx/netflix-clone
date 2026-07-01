@@ -14,6 +14,8 @@ export const SavedMovies = () => {
   )
 
   useEffect(() => {
+    // Mount flag avoids SSR/client hydration mismatch for persisted store state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoaded(true)
   }, [])
 

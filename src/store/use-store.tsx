@@ -8,6 +8,8 @@ const useStore = <T, F>(
   const [data, setData] = useState<F>()
 
   useEffect(() => {
+    // Deferred sync avoids SSR/client hydration mismatch for persisted store state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setData(result)
   }, [result])
 
