@@ -52,7 +52,7 @@ export const Navbar = ({ showLinks = true, searchQuery = '' }: Props) => {
 
   return (
     <nav
-      className="fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-14"
+      className="fixed top-0 right-0 left-0 z-40 flex items-center justify-between px-14"
       style={{ background }}
     >
       <div className="flex items-center gap-4 py-5">
@@ -100,7 +100,7 @@ export const Navbar = ({ showLinks = true, searchQuery = '' }: Props) => {
               <CaretDown />
             </Link>
 
-            <div className="absolute bottom-0 right-0 hidden w-[150px] translate-y-full bg-black group-hover:block">
+            <div className="absolute right-0 bottom-0 hidden w-[150px] translate-y-full bg-black group-hover:block">
               {profiles.map((profile) => (
                 <button
                   key={profile.id}
