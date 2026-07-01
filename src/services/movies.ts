@@ -61,6 +61,11 @@ export const getPopularMoviesByGenres = async (
   return data.results
 }
 
+export const getTrendingMovies = async (): Promise<Movie[]> => {
+  const { data } = await movieApi.get<GetMovieList>('/trending/movie/day')
+  return data.results
+}
+
 export const getMovieDetails = async (
   movieId: string | number,
 ): Promise<MovieDetails> => {

@@ -13,6 +13,7 @@ interface Props {
   backdrop_path: string
   movieLogo?: string | null
   paddingBottom?: boolean
+  fadeIn?: boolean
 }
 
 export const MovieHero = ({
@@ -22,9 +23,15 @@ export const MovieHero = ({
   backdrop_path,
   movieLogo,
   paddingBottom = true,
+  fadeIn = false,
 }: Props) => {
   return (
-    <header className="relative h-[calc(100vh-200px)]">
+    <header
+      className={clsx(
+        'relative h-[calc(100vh-200px)]',
+        fadeIn && 'animate-hero-fade-in',
+      )}
+    >
       <div
         className={clsx(
           'absolute left-16 z-20 grid max-w-[600px] gap-4',

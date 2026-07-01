@@ -2,6 +2,16 @@
 
 @theme {
   --font-sans: var(--font-open-sans);
+  --animate-hero-fade-in: hero-fade-in 1s ease-in-out;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /*

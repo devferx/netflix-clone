@@ -2,9 +2,11 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import {
+  getMovieImages,
   getPopularMovies,
   getPopularMoviesByGenres,
   getTopRatedMovies,
+  getTrendingMovies,
 } from '@/services'
 
 import { Footer, Navbar } from '@/components/ui'
@@ -14,6 +16,7 @@ import {
   MovieSlider,
   TopRatedMovies,
 } from '@/domains/home/components'
+import { getRandomItem } from '@/utils'
 
 export default async function HomePage() {
   const cookieStore = await cookies()
@@ -21,25 +24,34 @@ export default async function HomePage() {
 
   if (!profile) redirect('/select-profile')
 
-  const [popularMovies, topRatedMovies, popularFamilyMovies, horrorMovies] =
-    await Promise.all([
-      getPopularMovies(),
-      getTopRatedMovies(),
-      getPopularMoviesByGenres('10751,35'),
-      getPopularMoviesByGenres('27,53'),
-    ])
+  const [
+    popularMovies,
+    topRatedMovies,
+    popularFamilyMovies,
+    horrorMovies,
+    trendingMovies,
+  ] = await Promise.all([
+    getPopularMovies(),
+    getTopRatedMovies(),
+    getPopularMoviesByGenres('10751,35'),
+    getPopularMoviesByGenres('27,53'),
+    getTrendingMovies(),
+  ])
 
-  const [firstPopularMovie] = popularMovies
+  const heroMovie = getRandomItem(trendingMovies)
+  const { movieLogo } = await getMovieImages(heroMovie.id)
 
   return (
     <main>
       <MovieModal />
       <Navbar />
       <MovieHero
-        movieId={firstPopularMovie.id}
-        title={firstPopularMovie.title}
-        overview={firstPopularMovie.overview}
-        backdrop_path={firstPopularMovie.backdrop_path}
+        movieId={heroMovie.id}
+        title={heroMovie.title}
+        overview={heroMovie.overview}
+        backdrop_path={heroMovie.backdrop_path}
+        movieLogo={movieLogo}
+        fadeIn
       />
       <div className="-mt-[170px] grid gap-14">
         <MovieSlider title="Popular movies" movies={popularMovies} />
