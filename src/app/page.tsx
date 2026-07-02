@@ -57,14 +57,7 @@ export default async function HomePage() {
     <main>
       <MovieModal />
       <Navbar />
-      <MovieHero
-        movieId={heroMovie.id}
-        title={heroMovie.title}
-        overview={heroMovie.overview}
-        backdrop_path={heroMovie.backdrop_path}
-        movieLogo={movieLogo}
-        fadeIn
-      />
+      <MovieHero movie={heroMovie} movieLogo={movieLogo} fadeIn />
       <div className="-mt-[170px] grid gap-14">
         <MovieSlider title="Popular movies" movies={popularMoviesWithoutHero} />
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />

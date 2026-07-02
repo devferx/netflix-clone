@@ -1,30 +1,54 @@
+'use client'
+
 import Image from 'next/image'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import { Info, Play } from '@/components/icons'
+import { useStore, useUserMoviePreferences } from '@/store'
+
+import { Dislike, Info, Like, Play } from '@/components/icons'
+import { MovieActionButton } from './movie-action-button'
 
 import { getImageUrl } from '@/utils'
 
+import type { Movie } from '@/models'
+
 interface Props {
-  movieId: string | number
-  title: string
-  overview: string
-  backdrop_path: string
+  movie: Movie
   movieLogo?: string | null
   paddingBottom?: boolean
   fadeIn?: boolean
 }
 
 export const MovieHero = ({
-  movieId,
-  title,
-  overview,
-  backdrop_path,
+  movie,
   movieLogo,
   paddingBottom = true,
   fadeIn = false,
 }: Props) => {
+  const { id: movieId, title, overview, backdrop_path } = movie
+
+  const isMovieLiked = useStore(useUserMoviePreferences, (store) =>
+    store.isMovieLiked(movie.id),
+  )
+  const updateLikedMovies = useUserMoviePreferences(
+    (store) => store.updateLikedMovies,
+  )
+  const updateDislikedMovies = useUserMoviePreferences(
+    (store) => store.updateDislikedMovies,
+  )
+
+  const onClickLike = () => {
+    updateLikedMovies(movie)
+  }
+
+  const onClickDislike = () => {
+    if (isMovieLiked) {
+      updateLikedMovies(movie)
+    }
+    updateDislikedMovies(movie)
+  }
+
   return (
     <header
       className={clsx(
@@ -67,6 +91,12 @@ export const MovieHero = ({
             <Info />
             <span>More info</span>
           </Link>
+          <MovieActionButton onClick={onClickLike}>
+            <Like fill={isMovieLiked ? '#fff' : 'none'} />
+          </MovieActionButton>
+          <MovieActionButton onClick={onClickDislike}>
+            <Dislike />
+          </MovieActionButton>
         </div>
       </div>
 
