@@ -4,7 +4,12 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { useMovieModalStore, useStore, useUserMoviesStore } from '@/store'
+import {
+  useMovieModalStore,
+  useStore,
+  useUserMoviePreferences,
+  useUserMoviesStore,
+} from '@/store'
 
 import { Check, Dislike, Like, Play, Plus } from '@/components/icons'
 import { MovieActionButton } from './movie-action-button'
@@ -28,6 +33,16 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
   const updateUserMovies = useUserMoviesStore((store) => store.updateUserMovies)
   const openMovieModal = useMovieModalStore((store) => store.openMovieModal)
 
+  const isMovieLiked = useStore(useUserMoviePreferences, (store) =>
+    store.isMovieLiked(movie.id),
+  )
+  const updateLikedMovies = useUserMoviePreferences(
+    (store) => store.updateLikedMovies,
+  )
+  const updateDislikedMovies = useUserMoviePreferences(
+    (store) => store.updateDislikedMovies,
+  )
+
   const genres = (movie?.genre_ids ?? [])
     .map((genreId) => getGenreById(genreId))
     .join(' • ')
@@ -44,6 +59,19 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
   const onClickAddToList = (event: React.MouseEvent) => {
     event.stopPropagation()
     updateUserMovies(movie)
+  }
+
+  const onClickLike = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    updateLikedMovies(movie)
+  }
+
+  const onClickDislike = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    if (isMovieLiked) {
+      updateLikedMovies(movie)
+    }
+    updateDislikedMovies(movie)
   }
 
   return (
@@ -70,10 +98,10 @@ export const MovieCard = ({ movie, scaleOnHover = true }: Props) => {
           <MovieActionButton onClick={onClickAddToList}>
             {isMovieInUserList ? <Check /> : <Plus />}
           </MovieActionButton>
-          <MovieActionButton>
-            <Like />
+          <MovieActionButton onClick={onClickLike}>
+            <Like fill={isMovieLiked ? '#fff' : 'none'} />
           </MovieActionButton>
-          <MovieActionButton>
+          <MovieActionButton onClick={onClickDislike}>
             <Dislike />
           </MovieActionButton>
         </div>
