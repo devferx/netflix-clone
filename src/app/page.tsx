@@ -11,6 +11,7 @@ import {
 
 import { Footer, Navbar } from '@/components/ui'
 import {
+  BecauseYouLiked,
   MovieHero,
   MovieModal,
   MovieSlider,
@@ -63,6 +64,7 @@ export default async function HomePage() {
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />
         <TopRatedMovies movies={topRatedMovies} />
         <MovieSlider title="Popular horror movies" movies={horrorMovies} />
+        <BecauseYouLiked />
       </div>
       <Footer />
     </main>
