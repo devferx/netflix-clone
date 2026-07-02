@@ -1,5 +1,6 @@
 export * from '../../../components/ui/movie-hero'
 export * from '../../../components/ui/movie-action-button'
+export * from './because-you-liked'
 export * from './movie-modal'
 export * from '../../../components/ui/movie-card'
 export * from './movie-slider'
