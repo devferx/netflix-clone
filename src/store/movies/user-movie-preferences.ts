@@ -11,6 +11,7 @@ interface UserMoviesMap {
 interface State {
   likedMoviesByProfileId: UserMoviesMap
   dislikedMoviesByProfileId: UserMoviesMap
+  getCurrentLikedMovies: () => Movie[]
   updateLikedMovies: (movie: Movie) => void
   updateDislikedMovies: (movie: Movie) => void
   isMovieLiked: (movieId: number) => boolean
@@ -22,6 +23,11 @@ export const useUserMoviePreferences = create<State>()(
     (set, get) => ({
       likedMoviesByProfileId: {},
       dislikedMoviesByProfileId: {},
+      getCurrentLikedMovies: function (): Movie[] {
+        const profileId = getCurrentProfileId()
+        if (!profileId) return []
+        return Object.values(get().likedMoviesByProfileId[profileId] || {})
+      },
       updateLikedMovies: function (movie: Movie): void {
         const profileId = getCurrentProfileId()
         if (!profileId) return
