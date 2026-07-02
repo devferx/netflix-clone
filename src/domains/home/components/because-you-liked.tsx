@@ -33,9 +33,11 @@ const BecauseYouLikedSkeleton = () => (
 )
 
 export const BecauseYouLiked = () => {
-  const likedMovies = useStore(useUserMoviePreferences, (store) =>
-    store.getCurrentLikedMovies(),
+  const getCurrentLikedMovies = useStore(
+    useUserMoviePreferences,
+    (store) => store.getCurrentLikedMovies,
   )
+  const likedMovies = getCurrentLikedMovies?.()
 
   const hasFetchedRef = useRef(false)
   const [rows, setRows] = useState<Rows | null>(null)
