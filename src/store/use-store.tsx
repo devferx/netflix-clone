@@ -9,8 +9,9 @@ const useStore = <T, F>(
 
   useEffect(() => {
     // Deferred sync avoids SSR/client hydration mismatch for persisted store state.
+    // Wrapped in a thunk so a function-typed `result` isn't mistaken for a state updater.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setData(result)
+    setData(() => result)
   }, [result])
 
   return data

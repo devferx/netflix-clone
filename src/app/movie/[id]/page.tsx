@@ -56,17 +56,16 @@ export default async function SingleMoviePage({ params }: Props) {
   ])
   const { movieLogo, movieBackdrops } = movieImages
 
+  const { genres, ...movieDetailsWithoutGenres } = movieDetails
+  const movie: Movie = {
+    ...movieDetailsWithoutGenres,
+    genre_ids: genres.map((genre) => genre.id),
+  }
+
   return (
     <main>
       <Navbar />
-      <MovieHero
-        movieId={movieId}
-        title={movieDetails.title}
-        overview={movieDetails.overview}
-        movieLogo={movieLogo}
-        backdrop_path={movieDetails.backdrop_path}
-        paddingBottom={false}
-      />
+      <MovieHero movie={movie} movieLogo={movieLogo} paddingBottom={false} />
 
       <div className="mt-5 px-16 py-6">
         <CastSlider cast={movieCast} />

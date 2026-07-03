@@ -117,3 +117,12 @@ export const getMovieBySearch = async (query: string): Promise<Movie[]> => {
 
   return data.results
 }
+
+export const getMovieRecommendations = async (
+  movieId: string | number,
+): Promise<Movie[]> => {
+  const { data } = await movieApi.get<GetMovieList>(
+    `/movie/${movieId}/recommendations`,
+  )
+  return data.results
+}

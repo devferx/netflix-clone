@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 
-import { useMovieModalStore } from '@/store'
+import { useMovieModalStore, useStore, useUserMoviePreferences } from '@/store'
 
-import { Close } from '@/components/icons'
+import { Close, Dislike, Like } from '@/components/icons'
+import { MovieActionButton } from '@/components/ui'
 
 import { getImageUrl } from '@/utils'
 
@@ -12,7 +13,29 @@ export const MovieModal = () => {
   const currentMovie = useMovieModalStore((store) => store.currentMovie)
   const closeMovieModal = useMovieModalStore((store) => store.closeMovieModal)
 
+  const isMovieLiked = useStore(
+    useUserMoviePreferences,
+    (store) => !!currentMovie && store.isMovieLiked(currentMovie.id),
+  )
+  const updateLikedMovies = useUserMoviePreferences(
+    (store) => store.updateLikedMovies,
+  )
+  const updateDislikedMovies = useUserMoviePreferences(
+    (store) => store.updateDislikedMovies,
+  )
+
   if (!currentMovie) return null
+
+  const onClickLike = () => {
+    updateLikedMovies(currentMovie)
+  }
+
+  const onClickDislike = () => {
+    if (isMovieLiked) {
+      updateLikedMovies(currentMovie)
+    }
+    updateDislikedMovies(currentMovie)
+  }
 
   return (
     <div className="fixed inset-0 z-9999 grid place-items-center bg-black/55">
@@ -48,6 +71,14 @@ export const MovieModal = () => {
             <h3 className="text-xl font-bold text-balance">
               {currentMovie.title}
             </h3>
+            <div className="flex gap-2">
+              <MovieActionButton onClick={onClickLike}>
+                <Like fill={isMovieLiked ? '#fff' : 'none'} />
+              </MovieActionButton>
+              <MovieActionButton onClick={onClickDislike}>
+                <Dislike />
+              </MovieActionButton>
+            </div>
             <p className="text-pretty">{currentMovie.overview}</p>
           </div>
         </div>
