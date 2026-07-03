@@ -16,7 +16,7 @@ interface Props {
 
 export const TopRatedMovies = ({ movies }: Props) => {
   return (
-    <section className="grid gap-4">
+    <section className="z-10 grid gap-4">
       <h3 className="px-16 text-xl font-bold">Top 10 movies</h3>
       <Swiper
         className="mx-16 w-full"
