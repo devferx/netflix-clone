@@ -49,6 +49,10 @@ export default async function HomePage() {
     heroLogoPromise,
   ])
 
+  const popularMoviesWithoutHero = popularMovies.filter(
+    (movie) => movie.id !== heroMovie.id,
+  )
+
   return (
     <main>
       <MovieModal />
@@ -62,7 +66,7 @@ export default async function HomePage() {
         fadeIn
       />
       <div className="-mt-[170px] grid gap-14">
-        <MovieSlider title="Popular movies" movies={popularMovies} />
+        <MovieSlider title="Popular movies" movies={popularMoviesWithoutHero} />
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />
         <TopRatedMovies movies={topRatedMovies} />
         <MovieSlider title="Popular horror movies" movies={horrorMovies} />
