@@ -1,4 +1,4 @@
-# Spec 01 — Because You Liked (Like button + personalized recommendations)
+# Spec 02 — Because You Liked (Like button + personalized recommendations)
 
 **State:** Implemented
 **Date:** 2026-07-01
