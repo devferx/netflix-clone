@@ -24,22 +24,30 @@ export default async function HomePage() {
 
   if (!profile) redirect('/select-profile')
 
+  const heroMoviePromise = getTrendingMovies().then((trendingMovies) =>
+    getRandomItem(trendingMovies),
+  )
+
+  const heroLogoPromise = heroMoviePromise
+    .then((heroMovie) => getMovieImages(heroMovie.id))
+    .then(({ movieLogo }) => movieLogo)
+    .catch(() => null)
+
   const [
     popularMovies,
     topRatedMovies,
     popularFamilyMovies,
     horrorMovies,
-    trendingMovies,
+    heroMovie,
+    movieLogo,
   ] = await Promise.all([
     getPopularMovies(),
     getTopRatedMovies(),
     getPopularMoviesByGenres('10751,35'),
     getPopularMoviesByGenres('27,53'),
-    getTrendingMovies(),
+    heroMoviePromise,
+    heroLogoPromise,
   ])
-
-  const heroMovie = getRandomItem(trendingMovies)
-  const { movieLogo } = await getMovieImages(heroMovie.id)
 
   return (
     <main>
