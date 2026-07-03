@@ -2,9 +2,11 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import {
+  getMovieImages,
   getPopularMovies,
   getPopularMoviesByGenres,
   getTopRatedMovies,
+  getTrendingMovies,
 } from '@/services'
 
 import { Footer, Navbar } from '@/components/ui'
@@ -14,6 +16,7 @@ import {
   MovieSlider,
   TopRatedMovies,
 } from '@/domains/home/components'
+import { getRandomItem } from '@/utils'
 
 export default async function HomePage() {
   const cookieStore = await cookies()
@@ -21,28 +24,49 @@ export default async function HomePage() {
 
   if (!profile) redirect('/select-profile')
 
-  const [popularMovies, topRatedMovies, popularFamilyMovies, horrorMovies] =
-    await Promise.all([
-      getPopularMovies(),
-      getTopRatedMovies(),
-      getPopularMoviesByGenres('10751,35'),
-      getPopularMoviesByGenres('27,53'),
-    ])
+  const heroMoviePromise = getTrendingMovies().then((trendingMovies) =>
+    getRandomItem(trendingMovies),
+  )
 
-  const [firstPopularMovie] = popularMovies
+  const heroLogoPromise = heroMoviePromise
+    .then((heroMovie) => getMovieImages(heroMovie.id))
+    .then(({ movieLogo }) => movieLogo)
+    .catch(() => null)
+
+  const [
+    popularMovies,
+    topRatedMovies,
+    popularFamilyMovies,
+    horrorMovies,
+    heroMovie,
+    movieLogo,
+  ] = await Promise.all([
+    getPopularMovies(),
+    getTopRatedMovies(),
+    getPopularMoviesByGenres('10751,35'),
+    getPopularMoviesByGenres('27,53'),
+    heroMoviePromise,
+    heroLogoPromise,
+  ])
+
+  const popularMoviesWithoutHero = popularMovies.filter(
+    (movie) => movie.id !== heroMovie.id,
+  )
 
   return (
     <main>
       <MovieModal />
       <Navbar />
       <MovieHero
-        movieId={firstPopularMovie.id}
-        title={firstPopularMovie.title}
-        overview={firstPopularMovie.overview}
-        backdrop_path={firstPopularMovie.backdrop_path}
+        movieId={heroMovie.id}
+        title={heroMovie.title}
+        overview={heroMovie.overview}
+        backdrop_path={heroMovie.backdrop_path}
+        movieLogo={movieLogo}
+        fadeIn
       />
       <div className="-mt-[170px] grid gap-14">
-        <MovieSlider title="Popular movies" movies={popularMovies} />
+        <MovieSlider title="Popular movies" movies={popularMoviesWithoutHero} />
         <MovieSlider title="Watch with family" movies={popularFamilyMovies} />
         <TopRatedMovies movies={topRatedMovies} />
         <MovieSlider title="Popular horror movies" movies={horrorMovies} />
